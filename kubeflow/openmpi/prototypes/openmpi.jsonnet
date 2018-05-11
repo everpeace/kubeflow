@@ -22,6 +22,8 @@
 // @optionalParam nodeSelector string null Comma-delimited list of "key=value" pairs to select the worker nodes. e.g. "cloud.google.com/gke-accelerator=nvidia-tesla-k80"
 // @optionalParam podSecurityContext object {} 'securityContext' object to put master/worker pods.
 // @optionalParam containerSecurityContext object {} 'securityContext' object to put master/worker job containers.
+// @optionalParam volumes array [] 'volumes' to put master/workers pods.
+// @optionalParam volumeMounts array [] 'volumes' to put job containers in master/workers pods.
 
 local k = import "k.libsonnet";
 local openmpi = import "kubeflow/openmpi/all.libsonnet";

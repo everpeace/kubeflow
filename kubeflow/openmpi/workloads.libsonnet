@@ -94,7 +94,7 @@ local ROLE_WORKER = "worker";
         defaultMode: 420,  // 0644
       },
     },
-  ],
+  ] + util.parseJson(params.volumes),
 
   containers(params, role):: {
     local job = {
@@ -132,7 +132,7 @@ local ROLE_WORKER = "worker";
           name: "openmpi-secrets",
           mountPath: "/kubeflow/openmpi/secrets",
         },
-      ],
+      ] + util.parseJson(params.volumeMounts),
       securityContext: util.parseJson(params.containerSecurityContext),
     },
     local controller = {
