@@ -144,7 +144,7 @@ local ROLE_WORKER = "worker";
       workingDir: "/kubeflow/openmpi/data",
       command: [
         "python",
-        "/root/controller/main.py",
+        "/openmpi-controller/controller/main.py",
         "--namespace",
         params.namespace,
         "--master",
