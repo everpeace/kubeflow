@@ -13,7 +13,7 @@
     if std.type(str) == "string" && str != "null" && std.length(str) > 0 then {
       [std.splitLimit(keyValue, "=", 1)[0]]: std.splitLimit(keyValue, "=", 1)[1]
       for keyValue in $.toArray(str)
-    } else [],
+    } else {},
 
   parseJson(x)::
     if std.type(x) == "string" then
