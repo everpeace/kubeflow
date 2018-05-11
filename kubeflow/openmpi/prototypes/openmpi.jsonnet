@@ -20,6 +20,8 @@
 // @optionalParam controllerImage string jiez/openmpi-controller:0.0.1 Docker image of the openmpi-controller.
 // @optionalParam initTimeout number 300 Timeout in seconds to abort the initialization.
 // @optionalParam nodeSelector string null Comma-delimited list of "key=value" pairs to select the worker nodes. e.g. "cloud.google.com/gke-accelerator=nvidia-tesla-k80"
+// @optionalParam podSecurityContext object {} 'securityContext' object to put master/worker pods.
+// @optionalParam containerSecurityContext object {} 'securityContext' object to put master/worker job containers.
 
 local k = import "k.libsonnet";
 local openmpi = import "kubeflow/openmpi/all.libsonnet";

@@ -14,4 +14,11 @@
       [std.splitLimit(keyValue, "=", 1)[0]]: std.splitLimit(keyValue, "=", 1)[1]
       for keyValue in $.toArray(str)
     } else [],
+
+  parseJson(x)::
+    if std.type(x) == "string" then
+      if x != "null" && std.length(x) > 0 then std.native("parseJson")(x) else {}
+    else if std.type(x) == "function" then
+      "function_" + std.length(x)
+    else x,
 }

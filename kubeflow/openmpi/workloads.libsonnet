@@ -48,6 +48,7 @@ local ROLE_WORKER = "worker";
       imagePullSecrets: [{ name: secret } for secret in util.toArray(params.imagePullSecrets)],
       serviceAccountName: serviceaccount.name(params),
       nodeSelector: $.nodeSelector(params, role),
+      securityContext: util.parseJson(params.podSecurityContext),
     },
   },
 
@@ -132,6 +133,7 @@ local ROLE_WORKER = "worker";
           mountPath: "/kubeflow/openmpi/secrets",
         },
       ],
+      securityContext: util.parseJson(params.containerSecurityContext),
     },
     local controller = {
       name: "openmpi-controller",
