@@ -39,6 +39,7 @@ local ROLE_WORKER = "worker";
     spec: {
       hostname: podName,
       subdomain: service.name(params),
+      [if params.priorityClassName != "null" then 'priorityClassName']: params.priorityClassName,
       restartPolicy: "Never",
       terminationGracePeriodSeconds: 30,
       dnsPolicy: "ClusterFirst",
