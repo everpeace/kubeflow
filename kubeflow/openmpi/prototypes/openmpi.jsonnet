@@ -25,6 +25,7 @@
 // @optionalParam containerSecurityContext object {} 'securityContext' object to put master/worker job containers.
 // @optionalParam volumes array [] 'volumes' to put master/workers pods.
 // @optionalParam volumeMounts array [] 'volumes' to put job containers in master/workers pods.
+// @optionalParam tolerations array [] 'tolerations' to put master/worker pods.
 
 local k = import "k.libsonnet";
 local openmpi = import "kubeflow/openmpi/all.libsonnet";

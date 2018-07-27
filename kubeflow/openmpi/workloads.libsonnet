@@ -37,6 +37,7 @@ local ROLE_WORKER = "worker";
       },
     },
     spec: {
+      tolerations: params.tolerations,
       hostname: podName,
       subdomain: service.name(params),
       [if params.priorityClassName != "null" then 'priorityClassName']: params.priorityClassName,
