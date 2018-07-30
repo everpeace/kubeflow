@@ -38,6 +38,7 @@ local ROLE_WORKER = "worker";
     },
     spec: {
       tolerations: params.tolerations,
+      affinity: $.affinity(params, role),
       hostname: podName,
       subdomain: service.name(params),
       [if params.priorityClassName != "null" then 'priorityClassName']: params.priorityClassName,
@@ -178,6 +179,8 @@ local ROLE_WORKER = "worker";
 
   nodeSelector(params, role)::
     if role == ROLE_WORKER then util.toObject(params.nodeSelector) else {},
+  affinity(params, role)::
+    if role == ROLE_WORKER then params.affinity else {},
 
   customResources(params, role)::
     if role == ROLE_WORKER then {

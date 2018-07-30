@@ -26,8 +26,10 @@
 // @optionalParam volumes array [] 'volumes' to put master/workers pods.
 // @optionalParam volumeMounts array [] 'volumes' to put job containers in master/workers pods.
 // @optionalParam tolerations array [] 'tolerations' to put master/worker pods.
+// @optionalParam affinity object {} 'affinty' to put workers pods
 
 local k = import "k.libsonnet";
+
 local openmpi = import "kubeflow/openmpi/all.libsonnet";
 
 std.prune(k.core.v1.list.new(openmpi.all(params, env)))
