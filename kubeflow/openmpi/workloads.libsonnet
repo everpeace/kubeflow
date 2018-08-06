@@ -37,7 +37,7 @@ local ROLE_WORKER = "worker";
       },
     },
     spec: {
-      tolerations: params.tolerations,
+      tolerations: $.tolerations(params, role),
       affinity: $.affinity(params, role),
       hostname: podName,
       subdomain: service.name(params),
@@ -178,10 +178,14 @@ local ROLE_WORKER = "worker";
     } else {},
 
   nodeSelector(params, role)::
-    if role == ROLE_WORKER then util.toObject(params.nodeSelector) else {},
-  affinity(params, role)::
-    if role == ROLE_WORKER then params.affinity else {},
+    if role == ROLE_WORKER then util.toObject(params.nodeSelector) else  util.toObject(params.masterNodeSelector),
 
+  affinity(params, role)::
+    if role == ROLE_WORKER then params.affinity else params.masterAffinity,
+  
+  tolerations(params, role)::
+    if role == ROLE_WORKER then params.tolerations else  params.masterTolerations,
+  
   customResources(params, role)::
     if role == ROLE_WORKER then {
       limits: util.toObject(params.customResources),
