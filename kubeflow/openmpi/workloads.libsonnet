@@ -115,6 +115,7 @@ local ROLE_WORKER = "worker";
         std.toString(params.workers),
         params.exec,
         std.toString(params.initTimeout),
+        std.toString(params.mpiExecTimeoutToWaitWorkers),
       ],
       ports: [
         {

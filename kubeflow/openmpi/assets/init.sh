@@ -1,16 +1,16 @@
 set -exv
 
 OPENMPI_DIR=/kubeflow/openmpi
-MPIEXEC_TIMEOUT_ON_WAIT_MPI_READY=10
 BACKOFF_SECS=10
 TIMEOUT_EXIT_CODE=124
 
 wait_mpi_ready() {
   local workers=$1
   local max_retries=$2
+  local mpi_exec_timeout=$3
   local retries=0
 
-  until MPIEXEC_TIMEOUT=${MPIEXEC_TIMEOUT_ON_WAIT_MPI_READY} mpiexec -n ${workers} --hostfile ${OPENMPI_DIR}/assets/hostfile --allow-run-as-root -q sh -c 'echo $(hostname) is ready'; do
+  until MPIEXEC_TIMEOUT=${mpi_exec_timeout} mpiexec -n ${workers} --hostfile ${OPENMPI_DIR}/assets/hostfile --allow-run-as-root -q sh -c 'echo $(hostname) is ready'; do
     sleep ${BACKOFF_SECS}
 
     retries=$(expr ${retries} + 1)
@@ -44,6 +44,7 @@ role="$1"
 workers="$2"
 exec="$3"
 timeout_secs="$4"
+mpiexec_timeout_on_wait_mpi_ready="${5:-10}"
 max_retries=$(expr ${timeout_secs} / ${BACKOFF_SECS})
 
 # Set up openmpi
@@ -75,7 +76,7 @@ fi
 exit_code=0
 if [ "${role}" = "master" ]; then
   # Wait until workers are ready.
-  wait_mpi_ready ${workers} ${max_retries}
+  wait_mpi_ready ${workers} ${max_retries} ${mpiexec_timeout_on_wait_mpi_ready}
 
   # Run the exec command in master
   sh -c "${exec}" || exit_code=$?
