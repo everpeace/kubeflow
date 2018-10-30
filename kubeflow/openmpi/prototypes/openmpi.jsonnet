@@ -22,7 +22,8 @@
 // @optionalParam workerWaitMpiExecTimeout number 10 Timeout in seconds of timeout of mpiexec to wait for all workers running
 // @optionalParam nodeSelector string null Comma-delimited list of "key=value" pairs to select the worker nodes. e.g. "cloud.google.com/gke-accelerator=nvidia-tesla-k80"
 // @optionalParam masterNodeSelector string null Comma-delimited list of "key=value" pairs to select the maseter node.
-// @optionalParam priorityClassName string null priorityClassName for master/worker pods.
+// @optionalParam priorityClassName string null priorityClassName for worker pods.
+// @optionalParam masterPriorityClassName string null priorityClassName for master pod.
 // @optionalParam podSecurityContext object {} 'securityContext' object to put master/worker pods.
 // @optionalParam containerSecurityContext object {} 'securityContext' object to put master/worker job containers.
 // @optionalParam volumes array [] 'volumes' to put master/workers pods.
