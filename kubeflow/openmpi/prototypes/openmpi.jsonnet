@@ -19,7 +19,7 @@
 // @optionalParam schedulerName string default-scheduler scheduler name to use for the components.
 // @optionalParam controllerImage string jiez/openmpi-controller:0.0.1 Docker image of the openmpi-controller.
 // @optionalParam initTimeout number 300 Timeout in seconds to abort the initialization.
-// @optionalParam workerWaitMpiExecTimeout number 10 Timeout in seconds of timeout of mpiexec to wait for all workers running
+// @optionalParam mpiExecTimeoutToWaitWorkers number 10 Timeout in seconds of timeout of mpiexec to wait for all workers running
 // @optionalParam nodeSelector string null Comma-delimited list of "key=value" pairs to select the worker nodes. e.g. "cloud.google.com/gke-accelerator=nvidia-tesla-k80"
 // @optionalParam masterNodeSelector string null Comma-delimited list of "key=value" pairs to select the maseter node.
 // @optionalParam priorityClassName string null priorityClassName for worker pods.
