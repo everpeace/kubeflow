@@ -35,7 +35,7 @@ wait_controller_signal() {
   done
 }
 
-if [ $# -ne 4 ]; then
+if [ $# -ne 5 ]; then
   echo "illegal number of parameters"
   exit 1
 fi
@@ -44,7 +44,7 @@ role="$1"
 workers="$2"
 exec="$3"
 timeout_secs="$4"
-mpiexec_timeout_on_wait_mpi_ready="${5:-10}"
+mpiexec_timeout_on_wait_mpi_ready="$5"
 max_retries=$(expr ${timeout_secs} / ${BACKOFF_SECS})
 
 # Set up openmpi
