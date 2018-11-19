@@ -177,7 +177,13 @@ local ROLE_WORKER = "worker";
         memory: if params.memory != "null" then params.memory,
         "nvidia.com/gpu": if params.gpu > 0 then params.gpu,
       },
-    } else {},
+    } else {
+      limits: {
+        cpu: if params.masterCpu != "null" then params.masterCpu,
+        memory: if params.masterMemory != "null" then params.masterMemory,
+        "nvidia.com/gpu": if params.masterGpu > 0 then params.masterGpu,
+      },
+    },
 
   nodeSelector(params, role)::
     if role == ROLE_WORKER then util.toObject(params.nodeSelector) else  util.toObject(params.masterNodeSelector),
@@ -191,5 +197,7 @@ local ROLE_WORKER = "worker";
   customResources(params, role)::
     if role == ROLE_WORKER then {
       limits: util.toObject(params.customResources),
-    } else {},
+    } else {
+      limits: util.toObject(params.masterCustomResources),
+    },
 }

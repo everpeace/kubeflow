@@ -14,7 +14,11 @@
 // @optionalParam gpu number 0 Number of GPUs per worker.
 // @optionalParam cpu string null CPU limits per worker.
 // @optionalParam memory string null Memory limits per worker.
+// @optionalParam masterGpu number 0 Number of GPUs on master.
+// @optionalParam masterCpu string null CPU limits on master.
+// @optionalParam masterMemory string null Memory limits on master.
 // @optionalParam customResources string null Comma-delimited list of "resourceName=amount" pairs which you want to limit per worker.
+// @optionalParam masterCustomResources string null Comma-delimited list of "resourceName=amount" pairs which you want to limit on master.
 // @optionalParam serviceAccountName string null the service account name to run pods. The service account should have clusterRoleBinding for "view" ClusterRole.  If it was not set, service account and its role binding will be created automatically.
 // @optionalParam schedulerName string default-scheduler scheduler name to use for the components.
 // @optionalParam controllerImage string jiez/openmpi-controller:0.0.1 Docker image of the openmpi-controller.
